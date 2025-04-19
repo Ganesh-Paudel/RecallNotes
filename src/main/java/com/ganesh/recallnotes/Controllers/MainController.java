@@ -1,9 +1,13 @@
 package com.ganesh.recallnotes.Controllers;
 
+import com.ganesh.recallnotes.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -15,7 +19,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -25,6 +31,7 @@ public class MainController implements Initializable {
    @FXML private Text greetingText;
    @FXML private Button chooseFileButton;
    @FXML private Canvas noteCanvas;
+   @FXML private Button newNote;
 
 
 
@@ -84,6 +91,13 @@ public class MainController implements Initializable {
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("JetBrains Mono", 30));
         gc.fillText("Ganesh Notes", 100, 100);
+    }
+
+    @FXML
+    public void newNoteHandler(ActionEvent event) throws IOException {
+       Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("NotesTyping.fxml")));
+       Stage stage = (Stage) newNote.getScene().getWindow();
+       stage.setScene(new Scene(root));
     }
 }
 
