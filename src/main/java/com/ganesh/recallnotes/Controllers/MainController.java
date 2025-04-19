@@ -1,5 +1,6 @@
 package com.ganesh.recallnotes.Controllers;
 
+import com.ganesh.recallnotes.Components.FileChooserComponent;
 import com.ganesh.recallnotes.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,16 +68,10 @@ public class MainController implements Initializable {
 
     @FXML
     private void showFileExplorer(ActionEvent event){
-       FileChooser fileChooser = new FileChooser();
-       fileChooser.setTitle("Open Notes File");
-       fileChooser.getExtensionFilters().add(
-               new FileChooser.ExtensionFilter("Text Files", "*.txt")
-       );
-
-       fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Documents"));
-
-       Stage  stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       File file = fileChooser.showOpenDialog(stage);
+        Stage  stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       FileChooserComponent dialogBox = new FileChooserComponent("choose", "Choose a file", stage);
+       FileChooser fileChooser = dialogBox.getChooser();
+       File file = dialogBox.showDialogBox(fileChooser);
 
        if (file != null){
            chooseFileButton.setText(file.getName());

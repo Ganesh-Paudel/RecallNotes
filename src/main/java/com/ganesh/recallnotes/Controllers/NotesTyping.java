@@ -1,5 +1,6 @@
 package com.ganesh.recallnotes.Controllers;
 
+import com.ganesh.recallnotes.Components.FileChooserComponent;
 import com.ganesh.recallnotes.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +23,7 @@ public class NotesTyping {
     @FXML private TextArea noteContent;
 
     @FXML public void addNewNoteHandler(ActionEvent event) throws IOException {
+        Stage stage = (Stage) addNotesButton.getScene().getWindow();
         System.out.println("New Note button clicked");
         String title = noteTitle.getText();
         String content = noteContent.getText();
@@ -39,17 +42,26 @@ public class NotesTyping {
         alert.getButtonTypes().setAll(newNoteFile, existingNoteFile, cancelButton);
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent()) {
+            FileChooserComponent dialogBox = new FileChooserComponent();
+
             if(result.get() == newNoteFile) {
-                System.out.println("New Note button clicked");
+                dialogBox.setAction("save");
+                dialogBox.setTitle("Save New Note");
+                dialogBox.setStage(stage);
+
             } else if (result.get() == existingNoteFile) {
-                System.out.println("Existing Note button clicked");
+                dialogBox.setAction("choose");
+                dialogBox.setTitle("Add New Note");
+                dialogBox.setStage(stage);
             } else{
                 System.out.println("Cancel button clicked");
             }
+
+            FileChooser fileChooser = dialogBox.getChooser();
+            dialogBox.showDialogBox(fileChooser);
         }
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("MainView.fxml")));
-        Stage stage = (Stage) addNotesButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
 }
