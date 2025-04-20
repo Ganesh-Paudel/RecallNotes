@@ -1,6 +1,7 @@
 package com.ganesh.recallnotes.Controllers;
 
 import com.ganesh.recallnotes.Components.FileChooserComponent;
+import com.ganesh.recallnotes.FileHandling.ReadFile;
 import com.ganesh.recallnotes.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -30,13 +32,12 @@ public class MainController implements Initializable {
    @FXML
    private HBox feelingsBox;
    @FXML private Text greetingText;
-   @FXML private Button chooseFileButton;
+   @FXML private Button nextSectionButton;
    @FXML private Canvas noteCanvas;
    @FXML private Button newNote;
+    private ReadFile readFile;
 
-
-
-   @FXML
+    @FXML
     private void feelingsGiven(ActionEvent event) {
        Button clickedButton = (Button) event.getSource();
        String id = clickedButton.getId();
@@ -67,15 +68,17 @@ public class MainController implements Initializable {
 
 
     @FXML
-    private void showFileExplorer(ActionEvent event){
+    private void showFileExplorer(ActionEvent event) throws FileNotFoundException {
         Stage  stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
        FileChooserComponent dialogBox = new FileChooserComponent("choose", "Choose a file", stage);
        FileChooser fileChooser = dialogBox.getChooser();
        File file = dialogBox.showDialogBox(fileChooser);
 
        if (file != null){
-           chooseFileButton.setText(file.getName());
-           System.out.println(file.getAbsolutePath());
+           this.readFile = new ReadFile(file);
+           String[] sections = this.readFile.getSection();
+           System.out.println(sections[0]);
+           System.out.println(sections[1]);
        }
     }
 
@@ -93,6 +96,15 @@ public class MainController implements Initializable {
        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("NotesTyping.fxml")));
        Stage stage = (Stage) newNote.getScene().getWindow();
        stage.setScene(new Scene(root));
+    }
+
+    @FXML
+    public void getNextSection(ActionEvent event) throws FileNotFoundException {
+       String[] sections = this.readFile.getSection();
+       if(sections != null){
+           System.out.println(sections[0]);
+           System.out.println(sections[1]);
+       }
     }
 }
 

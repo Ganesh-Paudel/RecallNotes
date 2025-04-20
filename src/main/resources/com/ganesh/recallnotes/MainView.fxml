@@ -40,5 +40,6 @@
          </font>
       </TextField>
       <Button fx:id="newNote" layoutX="744.0" layoutY="181.0" mnemonicParsing="false" onAction="#newNoteHandler" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #71D5E4;" text="New Note" />
+      <Button fx:id="nextSectionButton" layoutX="744.0" layoutY="225.0" mnemonicParsing="false" onAction="#getNextSection" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #71D5E4;" text="Next Section &gt;&gt;" />
    </children>
 </AnchorPane>

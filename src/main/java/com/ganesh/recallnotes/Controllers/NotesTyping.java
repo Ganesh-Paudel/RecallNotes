@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -23,7 +22,6 @@ public class NotesTyping {
     @FXML private Button addNotesButton;
     @FXML private TextField noteTitle;
     @FXML private TextArea noteContent;
-    private FileChooser fileChooser;
     private FileChooserComponent dialogBox;
     private String title;
     private String content;
@@ -86,7 +84,7 @@ public class NotesTyping {
         }
 
     }
-    
+
     private void changeScene(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("MainView.fxml")));
         stage.setScene(new Scene(root));
