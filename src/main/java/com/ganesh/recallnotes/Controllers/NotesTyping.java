@@ -1,6 +1,7 @@
 package com.ganesh.recallnotes.Controllers;
 
 import com.ganesh.recallnotes.Components.FileChooserComponent;
+import com.ganesh.recallnotes.FileHandling.WriteFile;
 import com.ganesh.recallnotes.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,12 +23,16 @@ public class NotesTyping {
     @FXML private Button addNotesButton;
     @FXML private TextField noteTitle;
     @FXML private TextArea noteContent;
+    private FileChooser fileChooser;
+    private FileChooserComponent dialogBox;
+    private String title;
+    private String content;
 
     @FXML public void addNewNoteHandler(ActionEvent event) throws IOException {
         Stage stage = (Stage) addNotesButton.getScene().getWindow();
         System.out.println("New Note button clicked");
-        String title = noteTitle.getText();
-        String content = noteContent.getText();
+        this.title = noteTitle.getText();
+        this.content = noteContent.getText();
         System.out.println("Title: " + title);
         System.out.println("Content: " + content);
 
@@ -42,25 +48,46 @@ public class NotesTyping {
         alert.getButtonTypes().setAll(newNoteFile, existingNoteFile, cancelButton);
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent()) {
-            FileChooserComponent dialogBox = new FileChooserComponent();
 
             if(result.get() == newNoteFile) {
-                dialogBox.setAction("save");
-                dialogBox.setTitle("Save New Note");
-                dialogBox.setStage(stage);
-
+                showDialogBox("save", stage);
+                changeScene(stage);
             } else if (result.get() == existingNoteFile) {
-                dialogBox.setAction("choose");
-                dialogBox.setTitle("Add New Note");
-                dialogBox.setStage(stage);
+                showDialogBox("choose", stage);
+                changeScene(stage);
             } else{
                 System.out.println("Cancel button clicked");
             }
 
-            FileChooser fileChooser = dialogBox.getChooser();
-            dialogBox.showDialogBox(fileChooser);
         }
 
+    }
+
+    private void showDialogBox(String type, Stage stage) {
+        dialogBox = new FileChooserComponent();
+        boolean append = false;
+        if(type.equals("save")){
+            dialogBox.setAction("save");
+            dialogBox.setTitle("New File");
+        } else if (type.equals("choose")){
+            append = true;
+            dialogBox.setAction("choose");
+            dialogBox.setTitle("Choose File");
+        }
+
+        dialogBox.setStage(stage);
+        FileChooser fileChooser = dialogBox.getChooser();
+        File file = dialogBox.showDialogBox(fileChooser);
+        if (file != null) {
+            if(this.title != null && this.content != null){
+                WriteFile writer = new WriteFile(append);
+                writer.write(file, this.title, this.content);
+            }
+        }
+
+    }
+    
+    private void changeScene(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("MainView.fxml")));
         stage.setScene(new Scene(root));
     }
