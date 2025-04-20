@@ -13,10 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -28,14 +31,17 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class MainController implements Initializable {
+public class MainController{
    @FXML
    private HBox feelingsBox;
    @FXML private Text greetingText;
-   @FXML private Button nextSectionButton;
-   @FXML private Canvas noteCanvas;
    @FXML private Button newNote;
+   @FXML private TextFlow textFlow;
+   @FXML private Text titleContainer;
+
     private ReadFile readFile;
+    private int currentCharacterIndex = 0;
+
 
     @FXML
     private void feelingsGiven(ActionEvent event) {
@@ -66,6 +72,19 @@ public class MainController implements Initializable {
 
    }
 
+   @FXML
+   private void handleKeyTyped(KeyEvent event) {
+        if(currentCharacterIndex >= textFlow.getChildren().size()){ return; }
+
+        char typedCharacter = event.getCharacter().charAt(0);
+        Text targetCharacter = (Text) textFlow.getChildren().get(currentCharacterIndex);
+        char expectedCharacter = targetCharacter.getText().charAt(0);
+
+        if(typedCharacter == expectedCharacter){
+            targetCharacter.setOpacity(1.0);
+            currentCharacterIndex++;
+        }
+   }
 
     @FXML
     private void showFileExplorer(ActionEvent event) throws FileNotFoundException {
@@ -76,20 +95,11 @@ public class MainController implements Initializable {
 
        if (file != null){
            this.readFile = new ReadFile(file);
-           String[] sections = this.readFile.getSection();
-           System.out.println(sections[0]);
-           System.out.println(sections[1]);
+           writeInTextFlow();
        }
+       newNote.getScene().getRoot().requestFocus();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        GraphicsContext gc = noteCanvas.getGraphicsContext2D();
-
-        gc.setFill(Color.WHITE);
-        gc.setFont(new Font("JetBrains Mono", 30));
-        gc.fillText("Ganesh Notes", 100, 100);
-    }
 
     @FXML
     public void newNoteHandler(ActionEvent event) throws IOException {
@@ -106,5 +116,21 @@ public class MainController implements Initializable {
            System.out.println(sections[1]);
        }
     }
+
+    private void writeInTextFlow(){
+        String[] sections = this.readFile.getSection();
+        if(sections == null) return;
+        String content = sections[1];
+        titleContainer.setText(sections[0]);
+        for(char c: content.toCharArray()){
+            Text t = new Text(String.valueOf(c));
+            t.setFont(new Font("Arial", 45));
+            t.setFill(Color.BLACK);
+            t.setOpacity(0.5);
+            this.textFlow.getChildren().add(t);
+        }
+    }
+
+
 }
 
