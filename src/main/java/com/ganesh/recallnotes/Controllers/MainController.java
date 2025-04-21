@@ -108,14 +108,12 @@ public class MainController{
 
     @FXML
     public void getNextSection(ActionEvent event) throws FileNotFoundException {
-       String[] sections = this.readFile.getSection();
-       if(sections != null){
-           System.out.println(sections[0]);
-           System.out.println(sections[1]);
-       }
+       writeInTextFlow();
     }
 
     private void writeInTextFlow(){
+        titleContainer.setText("");
+        textFlow.getChildren().clear();
         String[] sections = this.readFile.getSection();
         if(sections == null) return;
         String content = sections[1];
