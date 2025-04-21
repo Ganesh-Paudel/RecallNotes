@@ -7,26 +7,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.FlashCardViewController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #FBE5C8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.FlashCardViewController">
    <children>
       <ScrollPane layoutX="8.0" layoutY="125.0" prefHeight="522.0" prefWidth="886.0">
          <content>
-            <FlowPane fx:id="flowFlashCard" hgap="15.0" prefHeight="518.0" prefWidth="882.0" style="-fx-background-color: darkgray;" vgap="10.0">
+            <FlowPane fx:id="flowFlashCard" hgap="15.0" prefHeight="518.0" prefWidth="882.0" style="-fx-background-color: #B6E5D8;" vgap="10.0">
                <padding>
                   <Insets left="15.0" top="20.0" />
                </padding>
             </FlowPane>
          </content>
       </ScrollPane>
-      <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flash Cards">
+      <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flash Cards" textAlignment="CENTER">
          <font>
-            <Font name="Franklin Gothic Medium" size="23.0" />
+            <Font name="Bookman Old Style" size="23.0" />
          </font>
       </Text>
-      <Text fx:id="flashCardsTitle" layoutX="394.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" textAlignment="CENTER">
+      <Text fx:id="flashCardsTitle" layoutX="394.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
          <font>
-            <Font name="Franklin Gothic Medium" size="23.0" />
+            <Font name="Franklin Gothic Medium" size="30.0" />
          </font>
       </Text>
    </children>

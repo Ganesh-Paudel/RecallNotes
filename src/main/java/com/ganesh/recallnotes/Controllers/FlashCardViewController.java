@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,13 +14,15 @@ import java.io.IOException;
 
 public class FlashCardViewController{
     @FXML private FlowPane flowFlashCard;
+    @FXML private Text flashCardsTitle;
     private File file;
 
     public void initialData(File file){
         this.file = file;
         System.out.println("In the initialData method");
         System.out.println(file.getAbsolutePath());
-
+        String filename = file.getName().substring(0, file.getName().lastIndexOf("."));
+        flashCardsTitle.setText(filename);
         addCards();
     }
 
