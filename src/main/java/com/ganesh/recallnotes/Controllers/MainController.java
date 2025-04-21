@@ -6,14 +6,10 @@ import com.ganesh.recallnotes.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -26,9 +22,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 
 public class MainController{
@@ -38,9 +32,12 @@ public class MainController{
    @FXML private Button newNote;
    @FXML private TextFlow textFlow;
    @FXML private Text titleContainer;
+   @FXML private Button getFlashCardButton;
 
     private ReadFile readFile;
     private int currentCharacterIndex = 0;
+    private File file;
+
 
 
     @FXML
@@ -91,11 +88,12 @@ public class MainController{
         Stage  stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
        FileChooserComponent dialogBox = new FileChooserComponent("choose", "Choose a file", stage);
        FileChooser fileChooser = dialogBox.getChooser();
-       File file = dialogBox.showDialogBox(fileChooser);
+       this.file = dialogBox.showDialogBox(fileChooser);
 
-       if (file != null){
-           this.readFile = new ReadFile(file);
+       if (this.file != null){
+           this.readFile = new ReadFile(this.file);
            writeInTextFlow();
+           getFlashCardButton.setDisable(false);
        }
        newNote.getScene().getRoot().requestFocus();
     }
@@ -129,6 +127,19 @@ public class MainController{
             t.setOpacity(0.5);
             this.textFlow.getChildren().add(t);
         }
+    }
+
+    @FXML
+    private void flashCardWindow(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource("FlashCardsView.fxml")));
+        Parent root = loader.load();
+
+        FlashCardViewController cardController = loader.getController();
+        cardController.initialData(this.file);
+
+
+        Stage stage = (Stage) newNote.getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 
 

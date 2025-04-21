@@ -39,5 +39,6 @@
             <Font name="Arial Black" size="19.0" />
          </font>
       </Text>
+      <Button fx:id="getFlashCardButton" disable="true" layoutX="65.0" layoutY="140.0" mnemonicParsing="false" onAction="#flashCardWindow" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #71D5E4;" text="Get Flash Cards" />
    </children>
 </AnchorPane>
