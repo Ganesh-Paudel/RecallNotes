@@ -3,13 +3,17 @@ package com.ganesh.recallnotes.Controllers;
 import com.ganesh.recallnotes.Components.FileChooserComponent;
 import com.ganesh.recallnotes.FileHandling.ReadFile;
 import com.ganesh.recallnotes.Main;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -21,10 +25,12 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 
-public class MainController{
+public class MainController implements Initializable {
    @FXML
    private HBox feelingsBox;
    @FXML private Text greetingText;
@@ -32,10 +38,15 @@ public class MainController{
    @FXML private TextFlow textFlow;
    @FXML private Text titleContainer;
    @FXML private Button getFlashCardButton;
+   @FXML private TreeView treeView;
+   @FXML private Button collapseTreeViewButton;
+   @FXML private Button chooseFileButton;
 
     private ReadFile readFile;
     private int currentCharacterIndex = 0;
     private File file;
+
+
 
 
 
@@ -140,5 +151,62 @@ public class MainController{
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Platform.runLater(() -> {
+            File rootDir;
+            if(this.file != null){
+                rootDir = this.file;
+            } else {
+                System.out.println("here");
+                rootDir = new File("C:/Users/LENOVO/Desktop/test");
+            }
+
+            System.out.println("outside here");
+            TreeItem<String> rootItem = createNode(rootDir);
+            rootItem.setExpanded(true);
+            treeView.setRoot(rootItem);
+        });
+
+
+    }
+
+    private TreeItem<String> createNode(File rootDir){
+        TreeItem<String> rootItem = new TreeItem<>(rootDir.getName());
+        if(rootDir.isDirectory()){
+            File[] files = rootDir.listFiles();
+            if(files != null) {
+                for(File f: files){
+                    rootItem.getChildren().add(createNode(f));
+                }
+            }
+        }
+
+        return rootItem;
+    }
+
+
+    @FXML
+    private void handleTreeViewCollapse(ActionEvent event){
+        if(collapseTreeViewButton.getText().equals(">>>")){
+            treeView.setVisible(true);
+            collapseTreeViewButton.setTranslateX(0);
+            collapseTreeViewButton.setText("<<<");
+            chooseFileButton.setTranslateX(0);
+            getFlashCardButton.setTranslateX(0);
+            textFlow.setTranslateX(0);
+            textFlow.setPrefWidth(662);
+
+        } else if(collapseTreeViewButton.getText().equals("<<<")){
+            treeView.setVisible(false);
+            collapseTreeViewButton.setTranslateX(-165);
+            collapseTreeViewButton.setText(">>>");
+            chooseFileButton.setTranslateX(-130);
+            getFlashCardButton.setTranslateX(-130);
+            textFlow.setTranslateX(-130);
+            textFlow.setPrefWidth(790);
+        }
+    }
 }
 
