@@ -115,4 +115,6 @@ public class FlashCardViewController{
         bigCardPane.setVisible(false);
     }
 
+
+
 }

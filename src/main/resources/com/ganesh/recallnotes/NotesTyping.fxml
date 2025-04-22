@@ -14,17 +14,22 @@
             <Font name="JetBrainsMono NF ExtraBold" size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="noteTitle" alignment="CENTER" layoutX="134.0" layoutY="62.0" prefHeight="26.0" prefWidth="632.0" promptText="Title" style="-fx-background-color: #D4F1F4;">
+      <TextField fx:id="noteTitle" alignment="CENTER" layoutX="152.0" layoutY="38.0" prefHeight="26.0" prefWidth="632.0" promptText="Title" style="-fx-background-color: #D4F1F4;">
          <font>
             <Font name="JetBrainsMono NF Light" size="24.0" />
          </font>
       </TextField>
-      <TextArea fx:id="noteContent" layoutX="134.0" layoutY="165.0" prefHeight="430.0" prefWidth="632.0" promptText="Notes" style="-fx-background-color: #05445E;">
+      <TextArea fx:id="noteContent" layoutX="19.0" layoutY="119.0" prefHeight="470.0" prefWidth="874.0" promptText="Notes" style="-fx-background-color: #05445E;">
          <font>
             <Font name="JetBrainsMono NF Medium" size="18.0" />
          </font>
       </TextArea>
       <Button fx:id="addNotesButton" layoutX="371.0" layoutY="603.0" mnemonicParsing="false" onAction="#addNewNoteHandler" prefHeight="26.0" prefWidth="157.0" style="-fx-background-color: #75E6DA; -fx-background-radius: 50;" text="Add Note">
+         <font>
+            <Font name="JetBrainsMono NF ExtraBold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="goBack" layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#goBacktoMain" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #75E6DA; -fx-background-radius: 50;" text="&lt;&lt;&lt;">
          <font>
             <Font name="JetBrainsMono NF ExtraBold" size="18.0" />
          </font>

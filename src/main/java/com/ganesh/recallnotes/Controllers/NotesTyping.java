@@ -89,4 +89,9 @@ public class NotesTyping {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("MainView.fxml")));
         stage.setScene(new Scene(root));
     }
+
+    @FXML
+    private void goBacktoMain(ActionEvent event) throws IOException {
+        changeScene((Stage) addNotesButton.getScene().getWindow());
+    }
 }
