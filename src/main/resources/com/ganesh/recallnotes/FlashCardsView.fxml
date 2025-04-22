@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #FBE5C8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.FlashCardViewController">
    <children>
-      <ScrollPane layoutX="8.0" layoutY="125.0" prefHeight="522.0" prefWidth="886.0">
+      <ScrollPane layoutX="32.0" layoutY="129.0" prefHeight="518.0" prefWidth="855.0">
          <content>
-            <FlowPane fx:id="flowFlashCard" hgap="15.0" prefHeight="518.0" prefWidth="882.0" style="-fx-background-color: #B6E5D8;" vgap="10.0">
+            <FlowPane fx:id="flowFlashCard" hgap="15.0" prefHeight="515.0" prefWidth="853.0" style="-fx-background-color: #B6E5D8;" vgap="10.0">
                <padding>
                   <Insets left="15.0" top="20.0" />
                </padding>
@@ -28,5 +31,22 @@
             <Font name="Franklin Gothic Medium" size="30.0" />
          </font>
       </Text>
+      <Pane fx:id="bigCardPane" layoutX="12.0" layoutY="51.0" prefHeight="584.0" prefWidth="876.0" style="-fx-background-color: gray;" visible="false">
+         <children>
+            <Text fx:id="bigCardTitle" layoutX="416.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" textAlignment="CENTER">
+               <font>
+                  <Font name="Agency FB" size="43.0" />
+               </font>
+            </Text>
+            <TextFlow fx:id="bigCardTextFlow" layoutX="110.0" layoutY="92.0" lineSpacing="1.5" prefHeight="468.0" prefWidth="669.0" style="-fx-background-color: white;" textAlignment="CENTER">
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </TextFlow>
+            <Button fx:id="closeBigCardView" layoutX="811.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleClosingBigCard" text="Close" />
+            <Button fx:id="previousCardButton" layoutX="57.0" layoutY="266.0" mnemonicParsing="false" onAction="#getPreviousCardHandler" prefHeight="27.0" prefWidth="34.0" text="&lt;=" />
+            <Button fx:id="nextCardButton" layoutX="821.0" layoutY="266.0" mnemonicParsing="false" onAction="#getNextCardHandler" prefHeight="27.0" prefWidth="34.0" text="=&gt;" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

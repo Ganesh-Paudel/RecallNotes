@@ -1,12 +1,22 @@
 package com.ganesh.recallnotes.Controllers;
 
+import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 
+
 public class SingleCardController {
     @FXML private Text cardTitle;
     @FXML private TextArea cardTextArea;
+    private int cardId;
+    private FlashCardViewController parentController;
+
+    public SingleCardController(int id, FlashCardViewController parentController){
+        this.cardId = id;
+        this.parentController = parentController;
+    }
+
 
     public void setTitle(String title){
         if(title != null){
@@ -18,5 +28,18 @@ public class SingleCardController {
         if(content != null){
             cardTextArea.setText(content);
         }
+    }
+
+    public String getTitle(){
+        return this.cardTitle.getText();
+    }
+
+    public String getContent(){
+        return this.cardTextArea.getText();
+    }
+
+    @FXML
+    private void handleCardClicked(MouseEvent event){
+        parentController.showInvisible(this.cardId, this);
     }
 }
