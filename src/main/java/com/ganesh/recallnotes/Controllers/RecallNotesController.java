@@ -156,19 +156,7 @@ public class RecallNotesController implements Initializable {
 
     }
 
-    private TreeItem<String> createNode(File rootDir){
-        TreeItem<String> rootItem = new TreeItem<>(rootDir.getName());
-        if(rootDir.isDirectory()){
-            File[] files = rootDir.listFiles();
-            if(files != null) {
-                for(File f: files){
-                    rootItem.getChildren().add(createNode(f));
-                }
-            }
-        }
 
-        return rootItem;
-    }
 
     @FXML private void handleGoBack(ActionEvent event){
         try {

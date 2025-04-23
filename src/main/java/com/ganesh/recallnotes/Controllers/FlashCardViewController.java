@@ -1,11 +1,13 @@
 package com.ganesh.recallnotes.Controllers;
 
+import com.ganesh.recallnotes.Components.FileChooserComponent;
 import com.ganesh.recallnotes.Controllers.independentComponents.SingleCardController;
 import com.ganesh.recallnotes.FileHandling.ReadFile;
 import com.ganesh.recallnotes.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -38,8 +41,6 @@ public class FlashCardViewController{
     @FXML private Pane bigCardPane;
     @FXML private Text bigCardTitle;
     @FXML private TextFlow bigCardTextFlow;
-    @FXML private Button previousCardButton;
-    @FXML private Button nextCardButton;
 
     private File file;
     private ArrayList<Section> sections = new ArrayList<>();
@@ -56,13 +57,14 @@ public class FlashCardViewController{
         addCards();
     }
 
+
     private void addCards(){
         try {
             ReadFile readFile = new ReadFile(file);
             String[] section;
             int id = 0;
             while ((section = readFile.getSection()) != null) {
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("FlashCard.fxml"));
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("independentComponents/FlashCard.fxml"));
                 SingleCardController singleCardController = new SingleCardController(id, this);
                 loader.setController(singleCardController);
                 Pane cardPane = loader.load();
@@ -128,6 +130,19 @@ public class FlashCardViewController{
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+
+    @FXML private void askForFile(ActionEvent event){
+        Stage  stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FileChooserComponent dialogBox = new FileChooserComponent("choose", "Choose a file", stage);
+        FileChooser fileChooser = dialogBox.getChooser();
+        this.file = dialogBox.showDialogBox(fileChooser);
+
+        if (this.file != null){
+            addCards();
+        }
+        bigCardPane.getScene().getRoot().requestFocus();
     }
 
 
