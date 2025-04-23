@@ -26,6 +26,10 @@ import java.util.Objects;
 
 public class FlashCardViewController{
 
+    /**
+     * private class that represents a section with title and content. Easier to store and access later when need to
+     * display and access
+     */
     private class Section {
         String title;
         String content;
@@ -42,12 +46,18 @@ public class FlashCardViewController{
     @FXML private Text bigCardTitle;
     @FXML private TextFlow bigCardTextFlow;
 
+    /* File provided by the user*/
     private File file;
+    /* List of sections in the choosen file by the user*/
     private ArrayList<Section> sections = new ArrayList<>();
+    /* to keep track of the section so it makes easier when switching between sections */
     private int currentSection;
 
 
-
+    /**
+     * Sets the file to the given file by the user and calls addCards which adds them to the flowpane
+     * @param file file which content will be read (must be the one created using this app)
+     */
     public void initialData(File file){
         this.file = file;
         System.out.println("In the initialData method");
@@ -58,6 +68,11 @@ public class FlashCardViewController{
     }
 
 
+    /**
+     * Goes through the file and for each of the section that is returned from the readfile class which reads each
+     * section then creates fxml element for each file and adds them to the flowpane and sections which later is used
+     * for switching the sections
+     */
     private void addCards(){
         try {
             ReadFile readFile = new ReadFile(file);
@@ -84,7 +99,12 @@ public class FlashCardViewController{
     }
 
 
-
+    /**
+     * This methods reveals the ui elements that are not visible; calling this method triggers the flashCards to be a
+     * big view mode where user can see the flashCards even closer
+     * @param cardId the id of the card(not used right now)
+     * @param cardController the controller so it's easier to get the content of the card
+     */
     public void showInvisible(int cardId, SingleCardController cardController){
         System.out.println("In showInvisible method");
         System.out.println(cardId);
@@ -96,18 +116,30 @@ public class FlashCardViewController{
         bigCardPane.setVisible(true);
     }
 
+    /**
+     * button which changes the section to previous section gets triggered if the invisible ui is shown
+     * @param event
+     */
     @FXML
     private void getPreviousCardHandler(ActionEvent event){
         int section = currentSection - 1 >= 0 ? --currentSection : 0;
         showCard(section);
     }
 
+    /**
+     * changes the section to the next section only if possible can only be triggered if the invisible ui is visible
+     * @param event
+     */
     @FXML
     private void getNextCardHandler(ActionEvent event){
         int section = currentSection + 1 < this.sections.size() ? ++currentSection : this.sections.size() - 1;
         showCard(section);
     }
 
+    /**
+     * Checks if the given section is within the range of total sections if it is then it changes the ui elements value
+     * @param section
+     */
     private void showCard(int section){
         if(section >= 0 && section < this.sections.size()){
             bigCardTitle.setText(sections.get(section).title);
@@ -117,11 +149,19 @@ public class FlashCardViewController{
         }
     }
 
+    /**
+     * Gets triggered when the button close is clicked and sets the ui to not visible
+     * @param event
+     */
     @FXML
     private void handleClosingBigCard(ActionEvent event){
         bigCardPane.setVisible(false);
     }
 
+    /**
+     * Gets triggered when the goBack button is clicked and changes the scene to the homeScreen one
+     * @param event
+     */
     @FXML private void handleGoBack(ActionEvent event){
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("HomeScreen.fxml")));
@@ -133,6 +173,10 @@ public class FlashCardViewController{
     }
 
 
+    /**
+     * if the user haven't provided the file then on clicking the button this method get triggered and asks for the file
+     * @param event
+     */
     @FXML private void askForFile(ActionEvent event){
         Stage  stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FileChooserComponent dialogBox = new FileChooserComponent("choose", "Choose a file", stage);

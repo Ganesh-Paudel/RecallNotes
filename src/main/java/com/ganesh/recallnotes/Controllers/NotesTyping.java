@@ -26,6 +26,12 @@ public class NotesTyping {
     private String title;
     private String content;
 
+    /**
+     * Once the user types the note and clicks add this method gets triggered which then asks user if they want to
+     * save in a new file or existing and based on the preference calls the different dialogBoxes
+     * @param event
+     * @throws IOException
+     */
     @FXML public void addNewNoteHandler(ActionEvent event) throws IOException {
         Stage stage = (Stage) addNotesButton.getScene().getWindow();
         System.out.println("New Note button clicked");
@@ -61,6 +67,11 @@ public class NotesTyping {
 
     }
 
+    /**
+     * Saves the content in the given file based on preferences and saves the file based on the preference of the user
+     * @param type preference (save, choose)
+     * @param stage the stage where the dialogBox will be shown
+     */
     private void showDialogBox(String type, Stage stage) {
         dialogBox = new FileChooserComponent();
         boolean append = false;
@@ -85,11 +96,22 @@ public class NotesTyping {
 
     }
 
+    /**
+     * changes the scene from the current to home screen given the stage
+     * @param stage the current stage
+     * @throws IOException
+     */
     private void changeScene(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("HomeScreen.fxml")));
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * Gets triggered when the goBAck button is clicked and calls changeScene causes to change the scene to the home
+     * screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void goBacktoMain(ActionEvent event) throws IOException {
         changeScene((Stage) addNotesButton.getScene().getWindow());
