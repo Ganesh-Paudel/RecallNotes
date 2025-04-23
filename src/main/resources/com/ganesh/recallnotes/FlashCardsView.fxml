@@ -48,5 +48,6 @@
             <Button fx:id="nextCardButton" layoutX="821.0" layoutY="266.0" mnemonicParsing="false" onAction="#getNextCardHandler" prefHeight="27.0" prefWidth="34.0" text="=&gt;" />
          </children>
       </Pane>
+      <Button fx:id="goBack" layoutX="834.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleGoBack" text="&lt;&lt;&lt;" />
    </children>
 </AnchorPane>

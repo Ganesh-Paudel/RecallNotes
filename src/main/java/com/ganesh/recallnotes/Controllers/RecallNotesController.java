@@ -30,7 +30,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class MainController implements Initializable {
+public class RecallNotesController implements Initializable {
    @FXML
    private HBox feelingsBox;
    @FXML private Text greetingText;
@@ -38,8 +38,7 @@ public class MainController implements Initializable {
    @FXML private TextFlow textFlow;
    @FXML private Text titleContainer;
    @FXML private Button getFlashCardButton;
-   @FXML private TreeView treeView;
-   @FXML private Button collapseTreeViewButton;
+   @FXML private Button goBack;
    @FXML private Button chooseFileButton;
 
     private ReadFile readFile;
@@ -154,23 +153,6 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        setExpanded();
-
-        Platform.runLater(() -> {
-            File rootDir;
-            if(this.file != null){
-                rootDir = this.file;
-            } else {
-                System.out.println("here");
-                rootDir = new File("C:/Users/LENOVO/Desktop/test");
-            }
-
-            System.out.println("outside here");
-            TreeItem<String> rootItem = createNode(rootDir);
-            rootItem.setExpanded(true);
-            treeView.setRoot(rootItem);
-        });
-
 
     }
 
@@ -188,35 +170,14 @@ public class MainController implements Initializable {
         return rootItem;
     }
 
-
-    @FXML
-    private void handleTreeViewCollapse(ActionEvent event){
-        if(collapseTreeViewButton.getText().equals(">>>")){
-            setCollapsed();
-
-        } else if(collapseTreeViewButton.getText().equals("<<<")){
-            setExpanded();
+    @FXML private void handleGoBack(ActionEvent event){
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("HomeScreen.fxml")));
+            Stage stage = (Stage) newNote.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-
-    private void setExpanded(){
-        treeView.setVisible(false);
-        collapseTreeViewButton.setTranslateX(-165);
-        collapseTreeViewButton.setText(">>>");
-        chooseFileButton.setTranslateX(-130);
-        getFlashCardButton.setTranslateX(-130);
-        textFlow.setTranslateX(-130);
-        textFlow.setPrefWidth(790);
-    }
-
-    private void setCollapsed(){
-        treeView.setVisible(true);
-        collapseTreeViewButton.setTranslateX(0);
-        collapseTreeViewButton.setText("<<<");
-        chooseFileButton.setTranslateX(0);
-        getFlashCardButton.setTranslateX(0);
-        textFlow.setTranslateX(0);
-        textFlow.setPrefWidth(662);
     }
 
 }
