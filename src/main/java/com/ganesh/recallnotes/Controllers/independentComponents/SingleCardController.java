@@ -1,5 +1,6 @@
-package com.ganesh.recallnotes.Controllers;
+package com.ganesh.recallnotes.Controllers.independentComponents;
 
+import com.ganesh.recallnotes.Controllers.FlashCardViewController;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;

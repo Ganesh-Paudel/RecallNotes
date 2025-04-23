@@ -8,4 +8,6 @@ module com.ganesh.recallnotes {
     exports com.ganesh.recallnotes;
     exports com.ganesh.recallnotes.Controllers;
     opens com.ganesh.recallnotes.Controllers to javafx.fxml;
+    exports com.ganesh.recallnotes.Controllers.independentComponents;
+    opens com.ganesh.recallnotes.Controllers.independentComponents to javafx.fxml;
 }

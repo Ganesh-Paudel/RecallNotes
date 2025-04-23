@@ -1,5 +1,6 @@
 package com.ganesh.recallnotes.Controllers;
 
+import com.ganesh.recallnotes.Controllers.independentComponents.SingleCardController;
 import com.ganesh.recallnotes.FileHandling.ReadFile;
 import com.ganesh.recallnotes.Main;
 import javafx.event.ActionEvent;

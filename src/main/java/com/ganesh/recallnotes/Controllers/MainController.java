@@ -154,6 +154,8 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        setExpanded();
+
         Platform.runLater(() -> {
             File rootDir;
             if(this.file != null){
@@ -190,23 +192,32 @@ public class MainController implements Initializable {
     @FXML
     private void handleTreeViewCollapse(ActionEvent event){
         if(collapseTreeViewButton.getText().equals(">>>")){
-            treeView.setVisible(true);
-            collapseTreeViewButton.setTranslateX(0);
-            collapseTreeViewButton.setText("<<<");
-            chooseFileButton.setTranslateX(0);
-            getFlashCardButton.setTranslateX(0);
-            textFlow.setTranslateX(0);
-            textFlow.setPrefWidth(662);
+            setCollapsed();
 
         } else if(collapseTreeViewButton.getText().equals("<<<")){
-            treeView.setVisible(false);
-            collapseTreeViewButton.setTranslateX(-165);
-            collapseTreeViewButton.setText(">>>");
-            chooseFileButton.setTranslateX(-130);
-            getFlashCardButton.setTranslateX(-130);
-            textFlow.setTranslateX(-130);
-            textFlow.setPrefWidth(790);
+            setExpanded();
         }
     }
+
+    private void setExpanded(){
+        treeView.setVisible(false);
+        collapseTreeViewButton.setTranslateX(-165);
+        collapseTreeViewButton.setText(">>>");
+        chooseFileButton.setTranslateX(-130);
+        getFlashCardButton.setTranslateX(-130);
+        textFlow.setTranslateX(-130);
+        textFlow.setPrefWidth(790);
+    }
+
+    private void setCollapsed(){
+        treeView.setVisible(true);
+        collapseTreeViewButton.setTranslateX(0);
+        collapseTreeViewButton.setText("<<<");
+        chooseFileButton.setTranslateX(0);
+        getFlashCardButton.setTranslateX(0);
+        textFlow.setTranslateX(0);
+        textFlow.setPrefWidth(662);
+    }
+
 }
 
