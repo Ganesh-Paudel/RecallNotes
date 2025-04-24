@@ -32,6 +32,9 @@ public class FunctionListComponentController {
             case "Recall Notes":
                 switchScreens("RecallNotes");
                 break;
+            case "Timer":
+                switchScreens("Timer");
+                break;
             default:
                 System.out.println("Not implemented Yet!!");
 

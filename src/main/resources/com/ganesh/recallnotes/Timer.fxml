@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.TimerController">
+   <children>
+      <Text layoutX="403.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timer">
+         <font>
+            <Font name="Script MT Bold" size="42.0" />
+         </font>
+      </Text>
+      <Circle fill="#2197ff57" layoutX="189.0" layoutY="298.0" radius="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Text layoutX="302.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" textAlignment="CENTER" wrappingWidth="20.8125">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Text>
+      <Text layoutX="574.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" textAlignment="CENTER" wrappingWidth="20.8125">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Text>
+      <Circle fill="#2197ff7d" layoutX="725.0" layoutY="298.0" radius="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#2197ff67" layoutX="450.0" layoutY="298.0" radius="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Button fx:id="startPauseButton" layoutX="415.0" layoutY="413.0" mnemonicParsing="false" onAction="#startPauseHandler" style="-fx-background-color: lightgreen; -fx-background-radius: 50;" text="Start">
+         <font>
+            <Font name="Script MT Bold" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="breakTimeButton" layoutX="556.0" layoutY="459.0" mnemonicParsing="false" onAction="#breakTimeHandler" style="-fx-background-color: lightgreen; -fx-background-radius: 50;" text="Break">
+         <font>
+            <Font name="Script MT Bold" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="stopTimeButton" layoutX="274.0" layoutY="459.0" mnemonicParsing="false" onAction="#stopTimeHandler" style="-fx-background-color: lightgreen; -fx-background-radius: 50;" text="Stop">
+         <font>
+            <Font name="Script MT Bold" size="23.0" />
+         </font>
+      </Button>
+      <Text fx:id="hoursTime" layoutX="159.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+         <font>
+            <Font name="Segoe UI" size="55.0" />
+         </font>
+      </Text>
+      <Text fx:id="minutesTime" layoutX="420.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+         <font>
+            <Font name="Segoe UI" size="55.0" />
+         </font>
+      </Text>
+      <Text fx:id="secondsTime" layoutX="695.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+         <font>
+            <Font name="Segoe UI" size="55.0" />
+         </font>
+      </Text>
+      <Button fx:id="goBackButton" layoutX="40.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleGoBack" style="-fx-background-color: lightgreen; -fx-background-radius: 50;" text="&lt;&lt;&lt;">
+         <font>
+            <Font name="Script MT Bold" size="23.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
