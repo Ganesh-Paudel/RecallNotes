@@ -1,9 +1,11 @@
 package com.ganesh.recallnotes.Controllers;
 
+import com.ganesh.recallnotes.Components.AlertBox;
 import com.ganesh.recallnotes.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -14,6 +16,7 @@ import javafx.scene.Parent;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Objects;
+import java.util.Optional;
 
 public class TimerController {
 
@@ -54,6 +57,27 @@ public class TimerController {
 
     @FXML
     private void breakTimeHandler(){
+        String title = "Break Time";
+        String headerText = "How long do you want to take a break";
+        String contentText = "5, 10, 15";
+        AlertBox alertBox = new AlertBox("confirmation", title, headerText, contentText);
+        alertBox.addButtons("05", "10", "15");
+
+        Optional<ButtonType> result = alertBox.getResult();
+        if(result.isPresent()){
+            if(result.get().getText().equals("05")){
+                System.out.println("break time of 5 minutes");
+            } else if(result.get().getText().equals("10")){
+                System.out.println("break time of 10 minutes");
+            } else if(result.get().getText().equals("15")){
+                System.out.println("break time of 15 minutes");
+            }
+        }
+
+
+        running = false;
+        startPauseButton.setText("Start");
+
 
     }
 
