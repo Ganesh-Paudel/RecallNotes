@@ -1,19 +1,19 @@
 package com.ganesh.recallnotes.Controllers.independentComponents;
 
-import com.ganesh.recallnotes.Controllers.FlashCardViewController;
+import com.ganesh.recallnotes.Controllers.FlashCardView;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 
 
-public class SingleCardController {
+public class SingleCard {
     @FXML private Text cardTitle;
     @FXML private TextArea cardTextArea;
     private int cardId;
-    private FlashCardViewController parentController;
+    private FlashCardView parentController;
 
-    public SingleCardController(int id, FlashCardViewController parentController){
+    public SingleCard(int id, FlashCardView parentController){
         this.cardId = id;
         this.parentController = parentController;
     }

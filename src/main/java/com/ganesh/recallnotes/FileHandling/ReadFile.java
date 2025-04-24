@@ -1,6 +1,8 @@
 package com.ganesh.recallnotes.FileHandling;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class ReadFile {
     private BufferedReader reader;
@@ -39,5 +41,20 @@ public class ReadFile {
 
     public void close() throws IOException {
         this.reader.close();
+    }
+
+    public ArrayList<String[]> getTasks() throws IOException {
+        String line;
+        ArrayList<String[]> allTasks = new ArrayList<>();
+        while((line = reader.readLine()) != null){
+            String[] task = line.split("=>|::");
+            allTasks.add(task);
+
+        }
+        return allTasks;
+    }
+
+    public String getPriorityTask() throws IOException {
+        return reader.readLine().trim();
     }
 }

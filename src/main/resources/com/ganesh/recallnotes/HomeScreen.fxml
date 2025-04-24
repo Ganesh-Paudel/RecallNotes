@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #F4F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.HomeScreenController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #F4F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.HomeScreen">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="127.0" prefWidth="876.0" spacing="50.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 40;">
          <children>
@@ -19,7 +19,14 @@
                   <Font name="Javanese Text" size="25.0" />
                </font>
             </Text>
-            <Pane fx:id="priorityTaskPane" prefHeight="89.0" prefWidth="583.0" style="-fx-background-color: #FFF3E0; -fx-background-radius: 20;" />
+            <Pane fx:id="priorityTaskPane" prefHeight="89.0" prefWidth="583.0" style="-fx-background-color: #FFF3E0; -fx-background-radius: 20;">
+               <children>
+                  <Text fx:id="priorityTask" layoutX="100.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="Malgun Gothic" size="25.0" />
+                     </font>
+                  </Text>
+               </children></Pane>
             <Button fx:id="userAccountButton" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" style="-fx-background-radius: 50; -fx-background-color: #FF7A00;" />
          </children>
          <padding>

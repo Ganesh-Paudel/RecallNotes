@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class FunctionListComponentController {
+public class FunctionListComponent {
 
     @FXML private Text functionName;
 
@@ -34,6 +34,9 @@ public class FunctionListComponentController {
                 break;
             case "Timer":
                 switchScreens("Timer");
+                break;
+            case "To Do":
+                switchScreens("ToDoList");
                 break;
             default:
                 System.out.println("Not implemented Yet!!");

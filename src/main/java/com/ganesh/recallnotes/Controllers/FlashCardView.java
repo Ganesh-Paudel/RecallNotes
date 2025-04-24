@@ -1,7 +1,7 @@
 package com.ganesh.recallnotes.Controllers;
 
 import com.ganesh.recallnotes.Components.FileChooserComponent;
-import com.ganesh.recallnotes.Controllers.independentComponents.SingleCardController;
+import com.ganesh.recallnotes.Controllers.independentComponents.SingleCard;
 import com.ganesh.recallnotes.FileHandling.ReadFile;
 import com.ganesh.recallnotes.Main;
 import javafx.event.ActionEvent;
@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -24,7 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class FlashCardViewController{
+public class FlashCardView {
 
     /**
      * private class that represents a section with title and content. Easier to store and access later when need to
@@ -80,7 +79,7 @@ public class FlashCardViewController{
             int id = 0;
             while ((section = readFile.getSection()) != null) {
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("independentComponents/FlashCard.fxml"));
-                SingleCardController singleCardController = new SingleCardController(id, this);
+                SingleCard singleCardController = new SingleCard(id, this);
                 loader.setController(singleCardController);
                 Pane cardPane = loader.load();
                 singleCardController.setTitle(section[0]);
@@ -105,7 +104,7 @@ public class FlashCardViewController{
      * @param cardId the id of the card(not used right now)
      * @param cardController the controller so it's easier to get the content of the card
      */
-    public void showInvisible(int cardId, SingleCardController cardController){
+    public void showInvisible(int cardId, SingleCard cardController){
         System.out.println("In showInvisible method");
         System.out.println(cardId);
         bigCardTitle.setText(cardController.getTitle());

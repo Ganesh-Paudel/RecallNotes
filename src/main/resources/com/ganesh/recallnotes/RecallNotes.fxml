@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleKeyTyped" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.RecallNotesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleKeyTyped" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.RecallNotes">
    <children>
       <Text fx:id="greetingText" layoutX="242.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, How's your Day?" textAlignment="CENTER">
          <font>

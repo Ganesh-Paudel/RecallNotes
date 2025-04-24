@@ -27,7 +27,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class RecallNotesController implements Initializable {
+public class RecallNotes implements Initializable {
    @FXML
    private HBox feelingsBox;
    @FXML private Text greetingText;
@@ -138,7 +138,7 @@ public class RecallNotesController implements Initializable {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource("FlashCardsView.fxml")));
         Parent root = loader.load();
 
-        FlashCardViewController cardController = loader.getController();
+        FlashCardView cardController = loader.getController();
         cardController.initialData(this.file);
 
 

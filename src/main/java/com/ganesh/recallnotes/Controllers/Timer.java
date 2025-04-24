@@ -10,16 +10,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 import java.io.IOException;
-import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Optional;
 
-public class TimerController {
+public class Timer {
 
     @FXML private Text hoursTime;
     @FXML private Text minutesTime;
