@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #FBE5C8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.FlashCardViewController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ganesh.recallnotes.Controllers.FlashCardViewController">
    <children>
       <ScrollPane layoutX="32.0" layoutY="129.0" prefHeight="518.0" prefWidth="855.0">
          <content>
-            <FlowPane fx:id="flowFlashCard" hgap="15.0" prefHeight="515.0" prefWidth="853.0" style="-fx-background-color: #B6E5D8;" vgap="10.0">
+            <FlowPane fx:id="flowFlashCard" hgap="15.0" prefHeight="515.0" prefWidth="853.0" style="-fx-background-color: #FFFFFF;" vgap="10.0">
                <padding>
                   <Insets left="15.0" top="20.0" />
                </padding>
@@ -48,7 +48,7 @@
             <Button fx:id="nextCardButton" layoutX="821.0" layoutY="266.0" mnemonicParsing="false" onAction="#getNextCardHandler" prefHeight="27.0" prefWidth="34.0" text="=&gt;" />
          </children>
       </Pane>
-      <Button fx:id="goBack" layoutX="834.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleGoBack" text="&lt;&lt;&lt;" />
-      <Button fx:id="chooseFile" layoutX="407.0" layoutY="14.0" mnemonicParsing="false" onAction="#askForFile" text="Choose Note" />
+      <Button fx:id="goBack" layoutX="834.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleGoBack" style="-fx-background-color: #FF7A00; -fx-text-fill: white;" text="&lt;&lt;&lt;" />
+      <Button fx:id="chooseFile" layoutX="407.0" layoutY="14.0" mnemonicParsing="false" onAction="#askForFile" style="-fx-background-color: #FF7A00; -fx-text-fill: white;" text="Choose Note" />
    </children>
 </AnchorPane>
