@@ -46,7 +46,7 @@ public class HomeScreen implements Initializable {
             File file = new File("tasks.txt");
             if(file.exists()){
                 ReadFile readFile = new ReadFile(file);
-                priorityTask.setText(readFile.getPriorityTask());
+                priorityTask.setText(readFile.getPriorityTask().split("=>|::")[1]);
             }
 
         } catch (IOException e) {
