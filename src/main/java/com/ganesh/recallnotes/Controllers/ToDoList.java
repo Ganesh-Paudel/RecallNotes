@@ -47,6 +47,9 @@ public class ToDoList implements Initializable {
         public String getPriority(){
             return this.taskPriority;
         }
+        public boolean equals(TaskData anotherTask){
+            return anotherTask.taskTitle.equals(this.taskTitle) && anotherTask.taskPriority.equals(this.taskPriority);
+        }
     }
 
 
@@ -168,6 +171,7 @@ public class ToDoList implements Initializable {
     }
 
     public void closeTaskInfoPanel(){
+        TaskController.currentSelectedTaskId = -1;
         taskInfoPanel.setVisible(false);
     }
 
@@ -180,25 +184,25 @@ public class ToDoList implements Initializable {
     private void handleDeleteTask(ActionEvent event){
         System.out.println("Deleting task");
         File file = new File("tasks.txt");
-
+        TaskData selectedTask = (TaskData) taskListView.getSelectionModel().getSelectedItem();
+        tasks.remove(selectedTask);
         try {
-            if (file.exists()) {
-                ReadFile readFile = new ReadFile(file);
-                ArrayList<String[]> taskList = readFile.getTasks();
-                ArrayList<String[]> newTaskList = new ArrayList<>();
-                for (int i = 0; i < taskList.size(); i++) {
+                ArrayList<String[]> newTask = new ArrayList<>();
+                for (int i = 0; i < tasks.size(); i++) {
                     if(i != TaskController.currentSelectedTaskId){
-                        newTaskList.add(taskList.get(i).clone());
+                        newTask.add(new String[]{tasks.get(i).taskPriority, tasks.get(i).taskTitle,
+                                tasks.get(i).taskDescription});
                     }
                 }
 
                 WriteFile writeFile = new WriteFile();
-                writeFile.writeTask(newTaskList, true);
+                writeFile.writeTask(newTask, true);
                 updateTaskList();
                 closeTaskInfoPanel();
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }

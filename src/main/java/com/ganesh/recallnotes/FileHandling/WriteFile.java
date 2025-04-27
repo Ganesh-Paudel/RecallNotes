@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WriteFile {
@@ -50,19 +51,32 @@ public class WriteFile {
         Path path = Paths.get("tasks.txt");
         List<String> tasks = Files.readAllLines(path);
 
-        String newTask = priority + "=>" + title + "::"+description;
-        int insertIndex = tasks.size();
+        String newTask = priority + "=>" + title + "::" + description;
+        int insertIndex = 0;
 
-        for(int i = 0; i < tasks.size(); i++){
+        for (int i = 0; i < tasks.size(); i++) {
             String line = tasks.get(i);
-            if(line.startsWith(priority+"=>")){
-                insertIndex = i + 1;
+            String existingPriority = line.split("=>")[0];
+
+            if (comparePriority(priority, existingPriority) < 0) {
+                insertIndex = i;
+                break;
             }
+            insertIndex = i + 1;
         }
 
         tasks.add(insertIndex, newTask);
         Files.write(path, tasks);
 
+    }
+
+    private int comparePriority(String p1, String p2) {
+        List<String> priorityOrder = Arrays.asList("H", "M", "L");
+
+        return Integer.compare(
+                priorityOrder.indexOf(p1),
+                priorityOrder.indexOf(p2)
+        );
     }
 
     public void writeTask(ArrayList<String[]> taskComponents,  boolean update) throws IOException {

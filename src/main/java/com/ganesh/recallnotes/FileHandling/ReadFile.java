@@ -55,6 +55,10 @@ public class ReadFile {
     }
 
     public String getPriorityTask() throws IOException {
-        return reader.readLine().trim();
+        String task = reader.readLine();
+        if(task == null){
+            return "";
+        }
+        return task.trim();
     }
 }
