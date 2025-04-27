@@ -38,7 +38,6 @@ public class HomeScreen implements Initializable {
         functions.add("Timer");
         functions.add("Notes");
         functions.add("Recall Notes");
-        functions.add("Mind Maps");
         functions.add("To Do");
 
         try {

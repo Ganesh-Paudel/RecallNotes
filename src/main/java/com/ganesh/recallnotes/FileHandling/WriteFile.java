@@ -64,4 +64,19 @@ public class WriteFile {
         Files.write(path, tasks);
 
     }
+
+    public void writeTask(ArrayList<String[]> taskComponents,  boolean update) throws IOException {
+
+        Path path = Paths.get("tasks.txt");
+        List<String> tasks = new ArrayList<>();
+
+        for(int i = 0; i < taskComponents.size(); i++){
+            String newTask = taskComponents.get(i)[0] + "=>" + taskComponents.get(i)[1] + "::"+taskComponents.get(i)[2];
+            tasks.add(newTask);
+        }
+
+
+        Files.write(path, tasks);
+
+    }
 }

@@ -91,5 +91,17 @@
             <Button fx:id="cancelAddTask" layoutX="41.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBacktoToDo" text="Cancel" />
          </children>
       </Pane>
+      <Pane fx:id="taskInfoPanel" layoutX="72.0" layoutY="107.0" prefHeight="196.0" prefWidth="785.0" style="-fx-background-color: darkgrey;" visible="false">
+         <children>
+            <Button fx:id="deleteTaskButton" layoutX="650.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleDeleteTask" text="Delete" />
+            <Text fx:id="taskTitle" layoutX="86.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Task">
+               <font>
+                  <Font name="MS UI Gothic" size="25.0" />
+               </font>
+            </Text>
+            <Button fx:id="closeTaskInfoButton" layoutX="656.0" layoutY="146.0" mnemonicParsing="false" onAction="#closeDescriptiveView" text="Close" />
+            <TextArea fx:id="taskDescriptionArea" disable="true" layoutX="70.0" layoutY="71.0" prefHeight="114.0" prefWidth="550.0" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

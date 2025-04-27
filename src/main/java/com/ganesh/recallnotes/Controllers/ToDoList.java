@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
@@ -30,11 +31,13 @@ public class ToDoList implements Initializable {
         private int id;
         private String taskTitle;
         private String taskPriority;
+        private String taskDescription;
 
-        public TaskData(String title, String priority){
+        public TaskData(String title, String priority, String description){
             this.id = idCount++;
             this.taskTitle = title;
             this.taskPriority = priority;
+            this.taskDescription = description;
         }
 
         public String getTitle(){
@@ -53,6 +56,9 @@ public class ToDoList implements Initializable {
     @FXML private TextField titleInput;
     @FXML private TextArea descriptionInput;
     @FXML private ToggleGroup priority;
+    @FXML private Pane taskInfoPanel;
+    @FXML private Text taskTitle;
+    @FXML private TextArea taskDescriptionArea;
     private ObservableList<TaskData> tasks = FXCollections.observableArrayList();
 
 
@@ -112,6 +118,9 @@ public class ToDoList implements Initializable {
                                     ".fxml"));
                             Pane root = loader.load();
                             TaskController taskController = loader.getController();
+                            taskController.setId(task.id);
+                            taskController.setDescription(task.taskDescription);
+                            taskController.setToDoListClass(ToDoList.this);
                             taskController.setTaskTitle(task.getTitle());
                             taskController.setPriorityColor(task.getPriority());
                             setGraphic(root);
@@ -137,13 +146,59 @@ public class ToDoList implements Initializable {
                 taskList = readFile.getTasks();
             }
             int i = 0;
+            tasks.clear();
             while (i < taskList.size()) {
-                tasks.add(new TaskData(taskList.get(i)[1], taskList.get(i)[0]));
+                tasks.add(new TaskData(taskList.get(i)[1], taskList.get(i)[0], taskList.get(i)[2]));
                 i++;
             }
         }catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void showTaskInfoPanel(){
+        taskInfoPanel.setVisible(true);
+        System.out.println(TaskController.currentSelectedTaskId);
+    }
+
+    public void setInfoPanel(String title, String description){
+        taskTitle.setText(title);
+        taskDescriptionArea.setText(description);
+    }
+
+    public void closeTaskInfoPanel(){
+        taskInfoPanel.setVisible(false);
+    }
+
+    @FXML
+    private void closeDescriptiveView(ActionEvent event){
+        closeTaskInfoPanel();
+    }
+
+    @FXML
+    private void handleDeleteTask(ActionEvent event){
+        System.out.println("Deleting task");
+        File file = new File("tasks.txt");
+
+        try {
+            if (file.exists()) {
+                ReadFile readFile = new ReadFile(file);
+                ArrayList<String[]> taskList = readFile.getTasks();
+                ArrayList<String[]> newTaskList = new ArrayList<>();
+                for (int i = 0; i < taskList.size(); i++) {
+                    if(i != TaskController.currentSelectedTaskId){
+                        newTaskList.add(taskList.get(i).clone());
+                    }
+                }
+
+                WriteFile writeFile = new WriteFile();
+                writeFile.writeTask(newTaskList, true);
+                updateTaskList();
+                closeTaskInfoPanel();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
