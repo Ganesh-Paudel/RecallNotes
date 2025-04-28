@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Controller for the window timer
+ */
 public class Timer {
 
     @FXML private Text hoursTime;
@@ -26,15 +29,21 @@ public class Timer {
     @FXML private Button breakTimeButton;
     @FXML private Pane breakOverPane;
 
+    /* thread for the time */
     private Thread clockThread;
+    /* to keep track if the timer is running or not and the thread */
     private boolean running = true;
 
+    /* store the current time and also isBreak is updated if the user asks for the break */
     private int second = 0;
     private int minute = 0;
     private int hours = 0;
     private boolean isBreak = false;
 
 
+    /**
+     * navigation from the timer to homescreen
+     */
     @FXML
     private void handleGoBack(){
         Parent root = null;
@@ -47,6 +56,9 @@ public class Timer {
         stage.setScene(new Scene(root));
     }
 
+    /**
+     * This sets the timer to start and also makes necessary changes to the UI
+     */
     @FXML
     private void startPauseHandler(){
         if(breakTimeButton.isDisabled()){
@@ -68,6 +80,10 @@ public class Timer {
 
     }
 
+    /**
+     * Whenever the user wants the break and asks for it then this methods asks for the time of break and starts the
+     * timer now decreasing
+     */
     @FXML
     private void breakTimeHandler(){
         if(breakTimeButton.getText().equals("Break")){
@@ -102,12 +118,19 @@ public class Timer {
 
     }
 
+    /**
+     * when the user stops the timer then the runnign is set to false which stops the ui and variable change and
+     * calls stoptime method
+     */
     @FXML
     private void stopTimeHandler(){
         running = false;
         stopTime();
     }
 
+    /**
+     * This method resets the UI and changes it to the original value
+     */
     private void stopTime(){
         breakTimeButton.setText("Break");
         startPauseButton.setText("Start");
@@ -122,6 +145,11 @@ public class Timer {
     }
 
 
+    /**
+     * This method is where the thread is created and it keeps running and changing the Ui unless there is a break or
+     * pause
+     * @param pause
+     */
     private void startPauseTime(boolean pause){
 
         clockThread = new Thread(() -> {
@@ -153,10 +181,14 @@ public class Timer {
             }
         });
 
+        /* this ensures when the user closes the window the thread will also end instead of going on */
         clockThread.setDaemon(true);
         clockThread.start();
     }
 
+    /**
+     * increases the time and updates the variable
+     */
     private void increaseTime(){
         second++;
         if(second == 60){
@@ -169,6 +201,9 @@ public class Timer {
         }
     }
 
+    /**
+     * decreases the time and updates teh variables
+     */
     private void decreaseTime(){
         second--;
         if(second <= 0 && minute <= 0 && hours <= 0){
@@ -193,14 +228,27 @@ public class Timer {
 
     }
 
+    /**
+     * There is a panel which is shown when the break is over this is called once it's over and it shows the panel
+     */
     private void setBreakTimePaneVisible(){
         breakOverPane.setVisible(true);
     }
 
+    /**
+     * When displaying the 0 alone looks not that good and to have 00 be shown this method returns the time as string
+     * int 00 01 format if necessary
+     * @param time the time as integers any minute hours or second
+     * @return
+     */
     private String getTimeText(int time){
         return (""+time).length() < 2 ? "0"+time : ""+time;
     }
 
+    /**
+     * this method starts the break time with changing the variables with the correct break time provided by the user
+     * @param time
+     */
     private void startBreakTime(int time){
         this.isBreak = true;
         this.second = 0;

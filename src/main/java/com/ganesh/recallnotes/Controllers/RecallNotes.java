@@ -27,7 +27,10 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-public class RecallNotes implements Initializable {
+/**
+ * The recall notes controller
+ */
+public class RecallNotes{
    @FXML
    private HBox feelingsBox;
    @FXML private Text greetingText;
@@ -38,8 +41,11 @@ public class RecallNotes implements Initializable {
    @FXML private Button goBack;
    @FXML private Button chooseFileButton;
 
+   /* the file to be read */
     private ReadFile readFile;
+    /* to keep track of where the user is in typing */
     private int currentCharacterIndex = 0;
+    /* used for saving the file */
     private File file;
 
 
@@ -75,6 +81,12 @@ public class RecallNotes implements Initializable {
 
    }
 
+    /**
+     * This method gets triggered when the user types a key and once tis;s done it gets that character compares with
+     * the current character the user is and if those two matches it shifts to another while changing the opacity of
+     * the text to give the experience of being changed
+     * @param event
+     */
    @FXML
    private void handleKeyTyped(KeyEvent event) {
         if(currentCharacterIndex >= textFlow.getChildren().size()){ return; }
@@ -89,6 +101,12 @@ public class RecallNotes implements Initializable {
         }
    }
 
+    /**
+     * This method calls the filechooser class tos how the file choosing dialog box where the user can choose a file
+     * Then once the file is choosen it sets the file variable to that file and shows in the textflow
+     * @param event
+     * @throws FileNotFoundException
+     */
     @FXML
     private void showFileExplorer(ActionEvent event) throws FileNotFoundException {
         Stage  stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -105,6 +123,11 @@ public class RecallNotes implements Initializable {
     }
 
 
+    /**
+     * When new Note button is clicked it changes the screen to Note screen
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void newNoteHandler(ActionEvent event) throws IOException {
        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("NotesTyping.fxml")));
@@ -112,11 +135,21 @@ public class RecallNotes implements Initializable {
        stage.setScene(new Scene(root));
     }
 
+    /**
+     * When the user finishes and clicks the get next section button it calls the write in textflow method which
+     * changes to the next section
+     * @param event
+     * @throws FileNotFoundException
+     */
     @FXML
     public void getNextSection(ActionEvent event) throws FileNotFoundException {
        writeInTextFlow();
     }
 
+    /**
+     * This method changes the text in UI and then gets the next section from the readfile instance which then is
+     * updated in the UI
+     */
     private void writeInTextFlow(){
         titleContainer.setText("");
         textFlow.getChildren().clear();
@@ -133,6 +166,12 @@ public class RecallNotes implements Initializable {
         }
     }
 
+    /**
+     * The user can travel to flashCard window from this window where it will generate the flashCards of the current
+     * file
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void flashCardWindow(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource("FlashCardsView.fxml")));
@@ -146,15 +185,10 @@ public class RecallNotes implements Initializable {
         stage.setScene(new Scene(root));
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-    }
-
-
-
+    /**
+     * Navigation back to home screen
+     * @param event
+     */
     @FXML private void handleGoBack(ActionEvent event){
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("HomeScreen.fxml")));

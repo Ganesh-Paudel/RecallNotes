@@ -12,11 +12,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * The functions that is shown at the beginning, this is the controller for the single component
+ */
 public class FunctionListComponent {
 
     @FXML private Text functionName;
 
 
+    /**
+     * whenever the funcction is clicked it goes through the switch and calls method to switch to that screen
+     * @param event
+     */
     @FXML
     private void handleFunctionClicked(MouseEvent event){
         System.out.println("Function Clicked");
@@ -45,6 +52,10 @@ public class FunctionListComponent {
 
     }
 
+    /**
+     * this is setter method here the name of the function is provided and it's set to the given one
+     * @param name
+     */
     public void setFunctionName(String name){
         if(name == null){
             return;
@@ -52,6 +63,10 @@ public class FunctionListComponent {
         functionName.setText(name);
     }
 
+    /**
+     * Switches to the respective function screen
+     * @param screenName
+     */
     private void switchScreens(String screenName){
         try {
             String screen = screenName + ".fxml";
