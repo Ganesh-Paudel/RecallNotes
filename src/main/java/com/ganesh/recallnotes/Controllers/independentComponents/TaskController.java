@@ -25,7 +25,7 @@ public class TaskController {
      */
     @FXML
     private void showTask(MouseEvent event){
-        System.out.println(taskTitle.getText());
+//        System.out.println(taskTitle.getText());
         toDoclass.setInfoPanel(taskTitle.getText(), this.description);
         toDoclass.showTaskInfoPanel();
     }

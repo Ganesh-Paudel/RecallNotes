@@ -34,11 +34,11 @@ public class NotesTyping {
      */
     @FXML public void addNewNoteHandler(ActionEvent event) throws IOException {
         Stage stage = (Stage) addNotesButton.getScene().getWindow();
-        System.out.println("New Note button clicked");
+//        System.out.println("New Note button clicked");
         this.title = noteTitle.getText();
         this.content = noteContent.getText();
-        System.out.println("Title: " + title);
-        System.out.println("Content: " + content);
+//        System.out.println("Title: " + title);
+//        System.out.println("Content: " + content);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("New Note");
@@ -60,7 +60,7 @@ public class NotesTyping {
                 showDialogBox("choose", stage);
                 changeScene(stage);
             } else{
-                System.out.println("Cancel button clicked");
+//                System.out.println("Cancel button clicked");
             }
 
         }

@@ -156,12 +156,12 @@ public class Timer {
             while(running){
                 if(!pause){
                     if(!isBreak) {
-                        System.out.println("inside thread getting seconds");
+//                        System.out.println("inside thread getting seconds");
                         increaseTime();
-                        System.out.println(second);
+//                        System.out.println(second);
 
                     } else{
-                        System.out.println("inside thread getting seconds");
+//                        System.out.println("inside thread getting seconds");
                         decreaseTime();
                     }
                     Platform.runLater(() -> {

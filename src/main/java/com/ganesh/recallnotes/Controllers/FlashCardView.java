@@ -59,8 +59,8 @@ public class FlashCardView {
      */
     public void initialData(File file){
         this.file = file;
-        System.out.println("In the initialData method");
-        System.out.println(file.getAbsolutePath());
+//        System.out.println("In the initialData method");
+//        System.out.println(file.getAbsolutePath());
         String filename = file.getName().substring(0, file.getName().lastIndexOf("."));
         flashCardsTitle.setText(filename);
         addCards();
@@ -105,8 +105,8 @@ public class FlashCardView {
      * @param cardController the controller so it's easier to get the content of the card
      */
     public void showInvisible(int cardId, SingleCard cardController){
-        System.out.println("In showInvisible method");
-        System.out.println(cardId);
+//        System.out.println("In showInvisible method");
+//        System.out.println(cardId);
         bigCardTitle.setText(cardController.getTitle());
         Text text = new Text(cardController.getContent());
         bigCardTextFlow.getChildren().clear();

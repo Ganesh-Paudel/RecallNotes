@@ -26,7 +26,7 @@ public class FunctionListComponent {
      */
     @FXML
     private void handleFunctionClicked(MouseEvent event){
-        System.out.println("Function Clicked");
+//        System.out.println("Function Clicked");
         final String nameOfFunction = functionName.getText();
 
         switch(nameOfFunction){
@@ -74,7 +74,7 @@ public class FunctionListComponent {
             Stage stage = (Stage) functionName.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch(IOException e){
-            System.out.println("switching screens io problem!");
+//            System.out.println("switching screens io problem!");
             e.printStackTrace();
         }
     }

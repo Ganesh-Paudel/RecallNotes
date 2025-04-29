@@ -83,6 +83,10 @@ public class WriteFile {
      */
     public void writeTask(String title, String description, String priority) throws IOException {
 
+        File file = new File("tasks.txt");
+        if(!file.exists()){
+            file.createNewFile();
+        }
         Path path = Paths.get("tasks.txt");
         List<String> tasks = Files.readAllLines(path);
 

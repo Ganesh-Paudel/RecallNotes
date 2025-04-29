@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class HomeScreen implements Initializable {
@@ -45,8 +46,11 @@ public class HomeScreen implements Initializable {
             File file = new File("tasks.txt");
             if(file.exists()){
                 ReadFile readFile = new ReadFile(file);
-                if(!readFile.getPriorityTask().isEmpty()){
-                    priorityTask.setText(readFile.getPriorityTask().split("=>|::")[1]);
+                String taskPriority = readFile.getPriorityTask();
+                if(!taskPriority.isEmpty()){
+                    String[] parts = taskPriority.split("=>|::");
+//                    System.out.println(Arrays.toString(parts));
+                    priorityTask.setText(parts[1]);
                 }
             }
 

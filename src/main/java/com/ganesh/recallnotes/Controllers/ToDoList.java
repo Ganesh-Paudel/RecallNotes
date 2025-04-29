@@ -112,9 +112,9 @@ public class ToDoList implements Initializable {
         String priority = priorityToggle.getText();
         String priorityText = priority.equals("High") ? "H" : priority.equals("Medium") ? "M" : "L";
 
-        System.out.println("Priority: " + priorityText);
-        System.out.println("Title: " + title);
-        System.out.println("Description: " + description);
+//        System.out.println("Priority: " + priorityText);
+//        System.out.println("Title: " + title);
+//        System.out.println("Description: " + description);
 
         WriteFile writeFile = new WriteFile("tasks.txt");
         writeFile.writeTask(title, description, priorityText);
@@ -243,7 +243,7 @@ public class ToDoList implements Initializable {
      */
     @FXML
     private void handleDeleteTask(ActionEvent event){
-        System.out.println("Deleting task");
+//        System.out.println("Deleting task");
         File file = new File("tasks.txt");
         TaskData selectedTask = (TaskData) taskListView.getSelectionModel().getSelectedItem();
         tasks.remove(selectedTask);
