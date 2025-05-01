@@ -27,6 +27,7 @@ public class Timer {
     @FXML private Text secondsTime;
     @FXML private Button startPauseButton;
     @FXML private Button breakTimeButton;
+    @FXML private Button stopTimeButton;
     @FXML private Pane breakOverPane;
 
     /* thread for the time */
@@ -70,6 +71,10 @@ public class Timer {
         if(breakOverPane.isVisible()){
             breakOverPane.setVisible(false);
         }
+        if(stopTimeButton.isDisabled() && startPauseButton.isDisabled()){
+            stopTimeButton.setDisable(false);
+            startPauseButton.setDisable(false);
+        }
 //        System.out.println("start Button clicked");
         boolean pause = startPauseButton.getText().equals("Pause");
         if(!isBreak){
@@ -106,11 +111,16 @@ public class Timer {
             }
             breakTimeButton.setText("End Break");
             startPauseButton.setText("Start");
+            startPauseButton.setDisable(true);
+            stopTimeButton.setDisable(true);
 
         } else if(breakTimeButton.getText().equals("End Break")){
             running = false;
             stopTime();
             breakTimeButton.setText("Break");
+            isBreak = false;
+            startPauseButton.setDisable(false);
+            stopTimeButton.setDisable(false);
         }
 
 
@@ -132,7 +142,8 @@ public class Timer {
      * This method resets the UI and changes it to the original value
      */
     private void stopTime(){
-        breakTimeButton.setText("Break");
+
+//        breakTimeButton.setText("Break");
         startPauseButton.setText("Start");
         secondsTime.setText("00");
         minutesTime.setText("00");
@@ -251,8 +262,8 @@ public class Timer {
      */
     private void startBreakTime(int time){
         this.isBreak = true;
-        this.second = 0;
-        this.minute = time;
+        this.second = 10;
+        this.minute = 0;
         this.running = true;
         startPauseTime(false);
     }

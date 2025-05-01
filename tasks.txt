@@ -1,1 +1,3 @@
-H=>HelloTitle::A description
+H=>Present CS Project::Present CS Project on Thursday
+M=>Complete the Started Series::Need to know what happens next
+L=>Study for Exams::Revise the notes for the finals

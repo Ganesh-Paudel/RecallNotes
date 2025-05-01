@@ -38,8 +38,6 @@ public class RecallNotes{
    @FXML private TextFlow textFlow;
    @FXML private Text titleContainer;
    @FXML private Button getFlashCardButton;
-   @FXML private Button goBack;
-   @FXML private Button chooseFileButton;
 
    /* the file to be read */
     private ReadFile readFile;
@@ -48,38 +46,6 @@ public class RecallNotes{
     /* used for saving the file */
     private File file;
 
-
-
-
-
-    @FXML
-    private void feelingsGiven(ActionEvent event) {
-       Button clickedButton = (Button) event.getSource();
-       String id = clickedButton.getId();
-
-       switch (id){
-           case "happy":
-
-                greetingText.setText("Happy");
-                break;
-           case "veryHappy":
-               greetingText.setText("Very Happy");
-               break;
-           case "veryVeryHappy":
-               greetingText.setText("Very Very Happy");
-               break;
-           case "extremelyHappy":
-               greetingText.setText("Extremely Happy");
-               break;
-           default:
-               greetingText.setText("No feelings");
-       }
-//       greetingText.setFont(new Font("JetBrains Mono", 50));
-       feelingsBox.getChildren().clear();
-       feelingsBox.setVisible(false);
-
-
-   }
 
     /**
      * This method gets triggered when the user types a key and once tis;s done it gets that character compares with
@@ -96,6 +62,7 @@ public class RecallNotes{
         char expectedCharacter = targetCharacter.getText().charAt(0);
 
         if(typedCharacter == expectedCharacter){
+            targetCharacter.setFill(Color.GREEN);
             targetCharacter.setOpacity(1.0);
             currentCharacterIndex++;
         }
@@ -144,6 +111,8 @@ public class RecallNotes{
     @FXML
     public void getNextSection(ActionEvent event) throws FileNotFoundException {
        writeInTextFlow();
+        newNote.getScene().getRoot().requestFocus();
+        currentCharacterIndex = 0;
     }
 
     /**
@@ -153,6 +122,7 @@ public class RecallNotes{
     private void writeInTextFlow(){
         titleContainer.setText("");
         textFlow.getChildren().clear();
+        if(this.readFile == null) return;
         String[] sections = this.readFile.getSection();
         if(sections == null) return;
         String content = sections[1];

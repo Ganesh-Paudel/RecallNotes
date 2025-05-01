@@ -20,7 +20,8 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Study Room");
         stage.setScene(scene);
-        stage.setResizable(false);
+//        stage.setMaximized(true);
+//        stage.setResizable(false);
         stage.show();
     }
 

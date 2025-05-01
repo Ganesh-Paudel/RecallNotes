@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="falshCardPane" onMouseClicked="#handleCardClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF3E0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fx:id="cardTitle" fill="#212121" layoutX="81.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" textAlignment="CENTER">
+      <Text fx:id="cardTitle" fill="#212121" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" textAlignment="CENTER" wrappingWidth="200.0">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font>
