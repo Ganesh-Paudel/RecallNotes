@@ -22,9 +22,9 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </TextFlow>
-      <Text fx:id="titleContainer" fill="WHITE" layoutX="264.0" layoutY="202.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="430.1367492675781">
+      <Text fx:id="titleContainer" layoutX="232.0" layoutY="200.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="430.1367492675781">
          <font>
-            <Font name="Arial Black" size="19.0" />
+            <Font name="JetBrainsMono NF Regular" size="17.0" />
          </font>
       </Text>
       <Button fx:id="getFlashCardButton" disable="true" layoutX="23.0" layoutY="140.0" mnemonicParsing="false" onAction="#flashCardWindow" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #FF7A00; -fx-text-fill: #FFFFFF;" text="Get Flash Cards" />

@@ -262,8 +262,8 @@ public class Timer {
      */
     private void startBreakTime(int time){
         this.isBreak = true;
-        this.second = 10;
-        this.minute = 0;
+        this.second = 0;
+        this.minute = time;
         this.running = true;
         startPauseTime(false);
     }
